@@ -1,0 +1,15 @@
+# This code computes in Macaulay2, invariants of V(2) using transvectants.
+
+R=QQ[a_1,a_2,a_3,x,y,Degrees=>{0,0,0,1,1}];
+
+Derx = (k,f) -> (g = f;for i in 1..k do g = diff(x,g);g);
+Dery = (k,f) -> (g = f;for i in 1..k do g = diff(y,g);g);
+
+transvectant = (f,g,k) -> (p = first degree f; q = first degree g;s = 0;for i in 0..k do s = s + (-1)^i*binomial(k,i)*Dery(i,Derx(k-i,f))*Dery(k-i,Derx(i,g));((p-k)!*(q-k)!/(p!*q!))*s);
+
+f = a_1*x^2 + a_2*x*y + a_3*y^2; 
+
+j = transvectant(f,f,2);
+
+F = map(QQ[s1,s2,s3],R,{s1,s2,s3,0,0});
+j = F(j)
