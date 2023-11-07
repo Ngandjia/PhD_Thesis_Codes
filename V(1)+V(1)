@@ -10,7 +10,7 @@ transvectant = (f,g,k) -> (p = first degree f; q = first degree g;s = 0;for i in
 f1 = a_1*x + b_1*y; 
 f2 = a_2*x + b_2*y;
 
-j = transvectant(f1,f2,1) # is the invariant.
+j = transvectant(f1,f2,1);
 
 F = map(QQ[s1,t1,s2,t2],R,{s1,t1,s2,t2,0,0});
 j = F(j)
