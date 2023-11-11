@@ -5,7 +5,8 @@ R=QQ[a_1,a_2,a_3,b_1,b_2,b_3,x,y,Degrees=>{0,0,0,0,0,0,1,1}];
 Derx = (k,f) -> (g = f;for i in 1..k do g = diff(x,g);g);
 Dery = (k,f) -> (g = f;for i in 1..k do g = diff(y,g);g);
 
-transvectant = (f,g,k) -> (p = first degree f; q = first degree g;s = 0;for i in 0..k do s = s + (-1)^i*binomial(k,i)*Dery(i,Derx(k-i,f))*Dery(k-i,Derx(i,g));((p-k)!*(q-k)!/(p!*q!))*s);
+transvectant = (f,g,k) -> (p = first degree f; q = first degree g;s = 0;for i in 0..k do 
+s = s + (-1)^i*binomial(k,i)*Dery(i,Derx(k-i,f))*Dery(k-i,Derx(i,g));((p-k)!*(q-k)!/(p!*q!))*s);
 
 f1 = a_1*x^2 + a_2*x*y + a_3*y^2; 
 f2 = b_1*x^2 + b_2*x*y + b_3*y^2;
