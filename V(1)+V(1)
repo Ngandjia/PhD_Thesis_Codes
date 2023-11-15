@@ -13,5 +13,10 @@ f2 = a_2*x + b_2*y;
 
 j = transvectant(f1,f2,1);
 
+# Compile the following lines to find the nullcone and its dimension.
+
 F = map(QQ[s1,t1,s2,t2],R,{s1,t1,s2,t2,0,0});
-j = F(j)
+j = F(j);
+
+J = ideal(j);
+dim J;
