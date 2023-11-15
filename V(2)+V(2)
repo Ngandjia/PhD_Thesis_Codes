@@ -11,26 +11,26 @@ s = s + (-1)^i*binomial(k,i)*Dery(i,Derx(k-i,f))*Dery(k-i,Derx(i,g));((p-k)!*(q-
 f1 = a_1*x^2 + a_2*x*y + a_3*y^2; 
 f2 = b_1*x^2 + b_2*x*y + b_3*y^2;
 
-j1 = transvectant(f1,f1,2);
-j2 = transvectant(f2,f2,2);
-j3 = transvectant(f1,f2,2);
+j21 = transvectant(f1,f1,2);
+j22 = transvectant(f2,f2,2);
+j23 = transvectant(f1,f2,2);
 j4 = transvectant(transvectant(f1,f2,1), transvectant(f1,f2,1),2);
 
 # Compile the following lines to find the nullcone and its dimension.
 
 F = map(QQ[s1,s2,s3,t1,t2,t3],R,{s1,s2,s3,t1,t2,t3,0,0});
 
-j1 = F(j1);
-j2 = F(j2);
-j3 = F(j3);
+j21 = F(j21);
+j22 = F(j22);
+j23 = F(j23);
 j4 = F(j4);
 
-J = ideal(j1,j2,j3,j4);
+J = ideal(j21,j22,j23,j4);
 dim J;
 
 # Erase the preceeding section, and then compile this section to find the categorical quotient V(I).
 
-G = map(R,QQ[u1,u2,u3,u4],{j1,j2,j3,j4});
+G = map(R,QQ[u1,u2,u3,u4],{j21,j22,j23,j4});
 
 I = ker G;
 dim I;
