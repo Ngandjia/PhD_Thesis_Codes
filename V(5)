@@ -1,0 +1,41 @@
+# This code computes in Macaulay2, invariants of V(5) using transvectants.
+
+R=QQ[a_1,a_2,a_3,a_4,a_5,a_6,x,y,Degrees=>{0,0,0,0,0,0,1,1}];
+
+Derx = (k,f) -> (g = f;for i in 1..k do g = diff(x,g);g);
+Dery = (k,f) -> (g = f;for i in 1..k do g = diff(y,g);g);
+
+transvectant = (f,g,k) -> (p = first degree f; q = first degree g;s = 0;for i in 0..k do 
+s = s + (-1)^i*binomial(k,i)*Dery(i,Derx(k-i,f))*Dery(k-i,Derx(i,g));((p-k)!*(q-k)!/(p!*q!))*s);
+
+f = a_1*x^5 + a_2*x^4*y + a_3*x^3*y^2 + a_4*x^2*y^3 + a_5*x*y^4 + a_6*y^5;
+
+c1 = transvectant(f,f,4);
+c2 = transvectant(f,f,2);
+c3 = transvectant(f,c1,2);
+c4 = transvectant(c3,c3,2);
+j4 = transvectant(c1,c1,2);
+j8 = transvectant(c4,c1,2);
+j12 = transvectant(c4,c4,2);
+j18 = transvectant(c1^7, f * transvectant(c2,f,1),14);
+
+# Compile the following lines to find the nullcone and its dimension.
+
+F = map(QQ[s1,s2,s3,s4,s5,s6],R,{s1,s2,s3,s4,s5,s6,0,0});
+
+j4 = F(j4);
+j8 = F(j8);
+j12 = F(j12);
+j18 = F(j18);
+
+J = ideal(j4,j8,j12,j18);
+dim J;
+
+# Erase the preceeding section, and then compile this section to find the categorical quotient V(I).
+
+G = map(R,QQ[u_1,u_2,u_3,u_4],{j4,j8,j12,j18});
+
+I = ker G;
+dim I;
+isPrime(I);
+i = ideal(singularLocus(I));
