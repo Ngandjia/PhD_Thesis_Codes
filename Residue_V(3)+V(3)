@@ -1,0 +1,18 @@
+# The following code is written with SageMath convention
+
+f(z,T) =  -(1-z^2)*z^5/((z+T^3)^2*(z^3+T^3)^2*(T^3*z+1)^2*(T^3*z^3+1)^2)
+show(factor(f(z,T)))
+
+r1 = f(z,T).residue(z == -T^3).simplify()
+show(factor(r1))
+
+r2 = f(z,T).residue(z == -T).simplify()
+show(factor(r2))
+
+r3 = f(z,T).residue(z == exp(i*pi/3)*T).simplify_full()
+r4 = f(z,T).residue(z == exp(-i*pi/3)*T).simplify_full()
+r = (r3+r4).simplify_full()
+show(factor(r))
+
+I = (r + r2 + r1).simplify_full()
+show(factor(I))
