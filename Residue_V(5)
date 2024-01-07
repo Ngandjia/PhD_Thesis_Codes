@@ -1,24 +1,23 @@
 # The following code is written with SageMath convention
 
 f(z,T) =  -(1-z^2)*z^6/((1+z^5*T^(15))*(1+z^3*T^(15))*(1+z*T^(15))*(z+T^(15))*(z^3+T^(15))*(z^5+T^(15)))
-show(factor(f(z,T)))
 
-r1 = f(z,T).residue(z == -T^(15)).simplify_full()
-show(factor(r1))
+r1(T) = f(z,T).residue(z == -T^(15)).simplify_full()
 
 r2 = f(z,T).residue(z == -T^5).simplify_full()
-r3 = f(z,T).residue(z == exp(i*pi/3)*T^5).simplify_full()
-r4 = f(z,T).residue(z == exp(-i*pi/3)*T^5).simplify_full()
-r = (r2 + r3 + r4).simplify_full()
-show(factor(r))
+r3 = f(z,T).residue(z == T^5*exp(i*pi/3)).simplify_full()
+r4 = f(z,T).residue(z == T^5*exp(-i*pi/3)).simplify_full()
+r(T) = (r2 + r3 + r4).simplify_full()
 
-r5 = f(z,T).residue(z == -T^3).simplify_full()
-r6 = f(z,T).residue(z == exp(i*pi/5)*T^3).simplify_full()
-r7 = f(z,T).residue(z == exp(-i*pi/5)*T^3).simplify_full()
-r8 = f(z,T).residue(z == exp(i*3*pi/5)*T^3).simplify_full()
-r9 = f(z,T).residue(z == exp(-i*3*pi/5)*T^3).simplify_full()
-R = (r5 + r6 + r7 + r8 + r9).simplify_full()
-show(factor(R))
+r5 = f(z,T).residue(z == T^3*exp(i*5*pi/5)).simplify_full()
 
-I = (r1 + r + R).simplify_full()
-show(factor(I))
+a1(z,T) = -(1-z^2)*z^6/((1+z^5*T^(15))*(1+z^3*T^(15))*(1+z*T^(15))*(z+T^(15))*(z^3+T^(15))*(z+T^3)*(z-exp(-i*pi/5)*T^3)*(z-exp(3*i*pi/5)*T^3)*(z-exp(-3*i*pi/5)*T^3))
+a2(z,T) = -(1-z^2)*z^6/((1+z^5*T^(15))*(1+z^3*T^(15))*(1+z*T^(15))*(z+T^(15))*(z^3+T^(15))*(z+T^3)*(z-exp(i*pi/5)*T^3)*(z-exp(3*i*pi/5)*T^3)*(z-exp(-3*i*pi/5)*T^3))
+a3(z,T) = -(1-z^2)*z^6/((1+z^5*T^(15))*(1+z^3*T^(15))*(1+z*T^(15))*(z+T^(15))*(z^3+T^(15))*(z+T^3)*(z-exp(i*pi/5)*T^3)*(z-exp(-i*pi/5)*T^3)*(z-exp(-3*i*pi/5)*T^3))
+a4(z,T) = -(1-z^2)*z^6/((1+z^5*T^(15))*(1+z^3*T^(15))*(1+z*T^(15))*(z+T^(15))*(z^3+T^(15))*(z+T^3)*(z-exp(i*pi/5)*T^3)*(z-exp(-i*pi/5)*T^3)*(z-exp(3*i*pi/5)*T^3))
+a(T) = (a1(exp(i*pi/5)*T^3,T) + a2(exp(-i*pi/5)*T^3,T) + a3(exp(3*i*pi/5)*T^3,T) + a4(exp(-3*i*pi/5)*T^3,T)).simplify_full()
+
+R(T) = (r5 + a(T)).simplify_full()
+q(T) = (r1(T) + r(T) + R(T)).simplify_full()
+
+final = q(T^(1/15))
