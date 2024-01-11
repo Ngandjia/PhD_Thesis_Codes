@@ -1,5 +1,6 @@
 # We denote by [b,l,w] the number of sequences x_1 >= x_2 >= ... >= x_l of nonnegative integers such that :
 # b >= x_1 and sum(x_i)=w.
+
 # We compute the number [b,l,w] for b=0.
 
 def f0(l,w) :
