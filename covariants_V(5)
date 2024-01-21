@@ -1,0 +1,53 @@
+# This code computes in Macaulay2, covariants of V(5) using transvectants.
+
+R=QQ[a_1,a_2,a_3,a_4,a_5,a_6,x,y,Degrees=>{0,0,0,0,0,0,1,1}];
+
+Derx = (k,f) -> (g = f;for i in 1..k do g = diff(x,g);g);
+Dery = (k,f) -> (g = f;for i in 1..k do g = diff(y,g);g);
+
+transvectant = (f,g,k) -> (p = first degree f; q = first degree g;s = 0;for i in 0..k do 
+s = s + (-1)^i*binomial(k,i)*Dery(i,Derx(k-i,f))*Dery(k-i,Derx(i,g));((p-k)!*(q-k)!/(p!*q!))*s);
+
+f = a_1*x^5 + 5*a_2*x^4*y + 10*a_3*x^3*y^2 + 10*a_4*x^2*y^3 + 5*a_5*x*y^4 + a_6*y^5;
+
+# The only covariant of degree 5 :
+c1 = transvectant(f, f, 4); 2
+c2 = transvectant(f, c1, 2) 3;
+d1 = transvectant(c1, c2, 2) 1;
+
+# The only covariant of degree 7 :
+d17 = transvectant(c1, d1, 1) 1;
+
+# The only covariant of degree 9  is j4 * d1:
+d19 = transvectant(c1, d17, 1) 1;
+
+# d1, d17 and d19 are algebraically independent.
+
+# One covariant of degree 11 is j4*d17, and the new one :
+d111 = transvectant(c1, d19, 1) 1;
+e = transvectant(f, f, 2)
+c = transvectant(e, c1, 2);
+d = transvectant(e, c, 4);
+d111 = transvectant(d1, d, 1)
+
+# I SUSPECT THAT WE THE PIECES TO BE REMOVED ARE d17 AND new_d111
+
+# Compile the following lines to find the nullcone and its dimension.
+
+F = map(QQ[s1,s2,s3,s4,s5,s6],R,{s1,s2,s3,s4,s5,s6,0,0});
+
+j4 = F(j4);
+j8 = F(j8);
+j12 = F(j12);
+j18 = F(j18);
+
+J = ideal(j4,j8,j12,j18);
+dim J;
+
+# Erase everything above, and then compile this section to find the categorical quotient V(I).
+
+R=QQ[u_1,u_2,u_3,u_4];
+I = ideal(16*u_4^2 - u_1^3*u_3^2 + 2*u_1^2*u_2^2*u_3 - u_1*u_2^4 + 72*u_1*u_2*u_3^2 - 8*u_2^3*u_3 + 432*u_3^3);
+dim I;
+isPrime(I);
+i = ideal(singularLocus(I));
