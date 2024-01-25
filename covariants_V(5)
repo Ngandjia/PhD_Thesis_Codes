@@ -32,22 +32,13 @@ alpha5 = transvectant(c1, c2, 2);
 # The only covariant of degree 7 :
 alpha7 = transvectant(c1, alpha5, 1);
 
-# The only covariant of degree 9  is j4 * alpha5:
-alpha9old = transvectant(c1, alpha7, 1) 1;
-
-# j4, alpha5 and alpha7 are algebraically independent
-# j8, alpha5 and alpha7 are algebraically independent
-# j4, j8 and alpha5 are algebraically independent
-# alpha5, alpha7, alpha11 and alpha13 are pairwise algebraically independent
-
-# One covariant of degree 11 is j4*alpha7, and the new one :
-alpha11old = transvectant(c1, alpha9old, 1) 1;
+# The new covariant of degree 11 :
 e = transvectant(f, f, 2);
 c = transvectant(e, c1, 2);
 d = transvectant(e, c, 4);
 alpha11 = transvectant(alpha5, d, 1)
 
-# One covariant of degree 13 is j4^2*alpha5, another is j8*alpha5 and the new one is :
+# The new covariant of degree 13 :
 e = transvectant(f, f, 2);
 c = transvectant(e, c1, 2);
 d = transvectant(e, c, 4);
@@ -58,15 +49,13 @@ alpha13 = transvectant(alpha7, d, 1)
 # The only covariant of degree 2 :
 beta2 = transvectant(f, f, 4);
 
-# One covariant of degree 6 is j4*beta2, and the new one is :
+# The new covariant of degree 6 :
 c = transvectant(f, f, 2);
 e = transvectant(c, c, 4);
 beta6 = transvectant(beta2, e, 2);
 
 # The only covariant of degree 8 is :
 beta8 = transvectant(beta6, beta2, 1);
-
-# beta2, beta6 and beta8 are pairwise algebraically independent
 
 # HERE ARE COVARIANTS OF ORDER 3
 
