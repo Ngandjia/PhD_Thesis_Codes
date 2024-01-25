@@ -68,6 +68,19 @@ beta8 = transvectant(beta6, beta2, 1);
 
 # beta2, beta6 and beta8 are pairwise algebraically independent
 
+# HERE ARE COVARIANTS OF ORDER 3
+
+# The only covariant of degree 3 :
+a = transvectant(f, f, 4);
+gamma3 = transvectant(a, f, 2);
+
+# The only covariant of degree 5 :
+gamma5 = transvectant(gamma3, a, 1);
+
+# The only covariant of degree 9 :
+b = transvectant(gamma5, a, 1);
+gamma9 = transvectant(b, a, 1);
+
 
 # SO FAR WE CAN FORGET ANY TWO OF THE apha_i's
 
