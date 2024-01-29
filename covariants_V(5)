@@ -1,6 +1,6 @@
 # This code computes in Macaulay2, covariants of V(5) using transvectants.
 
-R=QQ[a_1,a_2,a_3,a_4,a_5,a_6,x,y,Degrees=>{0,0,0,0,0,0,1,1}];
+R=QQ[a_1,a_2,a_3,a_4,a_5,a_6,x,y,Degrees=>{0,0,0,0,0,0,1,1}, MonomialOrder => Lex];
 
 Derx = (k,f) -> (g = f;for i in 1..k do g = diff(x,g);g);
 Dery = (k,f) -> (g = f;for i in 1..k do g = diff(y,g);g);
