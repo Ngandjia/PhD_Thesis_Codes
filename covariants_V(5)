@@ -66,8 +66,15 @@ c7 = transvectant(gamma5, c1, 1);
 gamma9 = -9*transvectant(c7, c1, 1);
 
 
-# SO FAR WE CAN FORGET ANY TWO OF THE apha_i's
+# Generators of the ideal
 
+I = ideal(j4, j8, j12, j18);
+p = diff(x, diff(x, alpha7^2));
+q = diff(y, diff(x, alpha7^2));
+r = diff(y, diff(y, alpha7^2));
+I = I + ideal(p, q, r)
+
+# Here is the ideal of the categorical quotien.
 
 G = map(R,QQ[u1,u2,u3,u4,u5,u6,u7],{j2,j41,j42,j43,j44,j45,j6});
 
