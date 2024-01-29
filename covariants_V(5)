@@ -68,11 +68,19 @@ gamma9 = -9*transvectant(c7, c1, 1);
 
 # Generators of the ideal
 
+F = map(QQ[s1,s2,s3,s4,s5,s6],R,{s1,s2,s3,s4,s5,s6,0,0});
+
+j4 = F(j4);
+j8 = F(j8);
+j12 = F(j12);
+j18 = F(j18);
+
 I = ideal(j4, j8, j12, j18);
-p = diff(x, diff(x, alpha7^2));
-q = diff(y, diff(x, alpha7^2));
-r = diff(y, diff(y, alpha7^2));
-I = I + ideal(p, q, r)
+p = diff(x, alpha7);
+q = diff(x, alpha7);
+p = F(p);
+q = F(q);
+I = I + ideal(p, q);
 
 # Here is the ideal of the categorical quotien.
 
