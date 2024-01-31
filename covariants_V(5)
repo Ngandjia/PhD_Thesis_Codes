@@ -74,15 +74,53 @@ j4 = F(j4);
 j8 = F(j8);
 j12 = F(j12);
 j18 = F(j18);
-
 I = ideal(j4, j8, j12, j18);
-p = diff(x, alpha7);
-q = diff(x, alpha7);
-p = F(p);
-q = F(q);
-I = I + ideal(p, q);
 
-# Here is the ideal of the categorical quotien.
+p = diff(x, alpha5);
+q = diff(y, alpha5);
+p5 = F(p);
+q5 = F(q);
+
+p = diff(x, alpha7);
+q = diff(y, alpha7);
+p7 = F(p);
+q7 = F(q);
+
+p = diff(x, alpha11);
+q = diff(y, alpha11);
+p11 = F(p);
+q11 = F(q);
+
+p = diff(x, alpha13);
+q = diff(y, alpha13);
+p13 = F(p);
+q13 = F(q);
+
+p = diff(x, diff(x, beta2));
+q = diff(x, diff(y, beta2));
+r = diff(y, diff(y, beta2));
+p2 = F(p);
+q2 = F(q);
+r2 = F(r);
+
+p = diff(x, diff(x, beta6));
+q = diff(x, diff(y, beta6));
+r = diff(y, diff(y, beta6));
+p6 = F(p);
+q6 = F(q);
+r6 = F(r);
+
+p = diff(x, diff(x, beta8));
+q = diff(x, diff(y, beta8));
+r = diff(y, diff(y, beta8));
+p8 = F(p);
+q8 = F(q);
+r8 = F(r);
+
+# I contains alpha7^2 and alpha7*alpha13
+I = I + ideal(p7*p13, p7*q13+p13*q7, q7*q13, p7^2, p7*q7, q7^2)
+
+# Here is the ideal of the categorical quotient.
 
 G = map(R,QQ[u1,u2,u3,u4,u5,u6,u7],{j2,j41,j42,j43,j44,j45,j6});
 
