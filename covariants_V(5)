@@ -117,6 +117,33 @@ p8 = F(p);
 q8 = F(q);
 r8 = F(r);
 
+p = diff(x, diff(x, diff(x, gamma3)));
+q = diff(x, diff(x, diff(y, gamma3)));
+r = diff(x, diff(y, diff(y, gamma3)));
+t = diff(y, diff(y, diff(y, gamma3)));
+p3 = F(p);
+q3 = F(q);
+r3 = F(r);
+t3 = F(t);
+
+p = diff(x, diff(x, diff(x, gamma5)));
+q = diff(x, diff(x, diff(y, gamma5)));
+r = diff(x, diff(y, diff(y, gamma5)));
+t = diff(y, diff(y, diff(y, gamma5)));
+p55 = F(p);
+q55 = F(q);
+r55 = F(r);
+t55 = F(t);
+
+p = diff(x, diff(x, diff(x, gamma9)));
+q = diff(x, diff(x, diff(y, gamma9)));
+r = diff(x, diff(y, diff(y, gamma9)));
+t = diff(y, diff(y, diff(y, gamma9)));
+p9 = F(p);
+q9 = F(q);
+r9 = F(r);
+t9 = F(t);
+
 # I contains alpha7^2 and alpha7*alpha13
 I = I + ideal(p7*p13, p7*q13+p13*q7, q7*q13, p7^2, p7*q7, q7^2)
 
