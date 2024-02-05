@@ -62,9 +62,7 @@ gamma3 = transvectant(c1, f, 2)/6;
 gamma5 = 3*transvectant(gamma3, c1, 1);
 
 # The only covariant of degree 9 :
-c7 = transvectant(gamma5, c1, 1);
-gamma9 = -9*transvectant(c7, c1, 1);
-
+gamma9 = transvectant(transvectant(c2,c2,2),c2,1)/8;
 
 # Generators of the ideal
 
