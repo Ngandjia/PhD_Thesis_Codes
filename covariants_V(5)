@@ -65,6 +65,13 @@ delta4 = -25*transvectant(c3, c3, 4)/4;
 c7 = transvectant(delta4, f, 4)
 delta6 = -transvectant(c7, f, 1)/4;
 
+# HERE ARE COVARIANTS OF ORDER 5
+
+# The only covariant of degree 3 :
+epsilon3 = 2*transvectant(f,c1,1);
+# The new covariant of degree 7 :
+
+
 # Generators of the ideal
 
 F = map(QQ[s1,s2,s3,s4,s5,s6],R,{s1,s2,s3,s4,s5,s6,0,0});
