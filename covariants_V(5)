@@ -68,9 +68,10 @@ delta6 = -transvectant(c7, f, 1)/4;
 # HERE ARE COVARIANTS OF ORDER 5
 
 # The only covariant of degree 3 :
-epsilon3 = 2*transvectant(f,c1,1);
+epsilon3 = transvectant(f,c1,1);
 # The new covariant of degree 7 :
-
+c8 = transvectant(epsilon3, epsilon3, 4);
+epsilon7 = 25*transvectant(c8, f, 1);
 
 # Generators of the ideal
 
