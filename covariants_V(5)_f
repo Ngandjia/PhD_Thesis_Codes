@@ -1,0 +1,182 @@
+# This code computes in Macaulay2, covariants of V(5) using transvectants.
+
+R=QQ[a_1,a_2,a_3,a_4,a_5,a_6,x,y,Degrees=>{0,0,0,0,0,0,1,1}, MonomialOrder => Lex];
+
+Derx = (k,f) -> (g = f;for i in 1..k do g = diff(x,g);g);
+Dery = (k,f) -> (g = f;for i in 1..k do g = diff(y,g);g);
+
+transvectant = (f,g,k) -> (p = first degree f; q = first degree g;s = 0;for i in 0..k do 
+s = s + (-1)^i*binomial(k,i)*Dery(i,Derx(k-i,f))*Dery(k-i,Derx(i,g));((p-k)!*(q-k)!/(p!*q!))*s);
+
+f = a_1*x^5 + 5*a_2*x^4*y + 10*a_3*x^3*y^2 + 10*a_4*x^2*y^3 + 5*a_5*x*y^4 + a_6*y^5;
+
+# HERE ARE COVARIANTS OF ORDER 0
+
+c = transvectant(f, f, 2);
+c1 = transvectant(f, f, 4)/2;
+c2 = transvectant(f, c1, 2);
+c3 = transvectant(c2, c2, 2);
+c4 = transvectant(c2, c1 ,2);
+j4 = -5*transvectant(c, c, 6);
+j8 = transvectant(c1, c3, 2);
+j12 = transvectant(c3, c3, 2)/6;
+j18 = -transvectant(transvectant(c4, c3, 1), transvectant(c1, c4, 1), 1)/3;
+
+# HERE ARE COVARIANTS OF ORDER 1
+
+# The only covariant of degree 5 :
+c1 = transvectant(f, f, 4); 
+c2 = transvectant(f, c1, 2);
+alpha5 = transvectant(c1, c2, 2)/4;
+# The only covariant of degree 7 :
+alpha7 = transvectant(c1, alpha5, 1);
+# The new covariant of degree 11 :
+c3 = transvectant(f, f, 2);
+c4 = transvectant(c3, c1, 2);
+c5 = transvectant(c3, c4, 4);
+alpha11 = -25*transvectant(alpha5, c5, 1);
+# The new covariant of degree 13 :
+alpha13 = 25*transvectant(alpha7, c5, 1)/3;
+
+# HERE ARE COVARIANTS OF ORDER 2
+
+# The only covariant of degree 2 :
+beta2 = c1/2;
+# The new covariant of degree 6 :
+c6 = transvectant(c3, c3, 4);
+beta6 = 75*transvectant(beta2, c6, 2)/4;
+# The only covariant of degree 8 is :
+beta8 = -transvectant(beta6, beta2, 1)/15;
+
+# HERE ARE COVARIANTS OF ORDER 3
+
+# The only covariant of degree 3 :
+gamma3 = transvectant(c1, f, 2)/6;
+# The only covariant of degree 5 :
+gamma5 = 3*transvectant(gamma3, c1, 1);
+# The only covariant of degree 9 :
+gamma9 = transvectant(transvectant(c2,c2,2),c2,1)/8;
+
+# HERE ARE COVARIANTS OF ORDER 4
+
+# The new covariant of degree 4 :
+delta4 = -25*transvectant(c3, c3, 4)/4;
+# The only covariant of degree 6 :
+c7 = transvectant(delta4, f, 4)
+delta6 = -transvectant(c7, f, 1)/4;
+
+# HERE ARE COVARIANTS OF ORDER 5
+
+# The only covariant of degree 3 :
+epsilon3 = transvectant(f,c1,1);
+# The new covariant of degree 7 :
+c8 = transvectant(epsilon3, epsilon3, 4);
+epsilon7 = 25*transvectant(c8, f, 1);
+
+# Generators of the ideal
+
+F = map(QQ[s1,s2,s3,s4,s5,s6],R,{s1,s2,s3,s4,s5,s6,0,0});
+
+j4 = F(j4);
+j8 = F(j8);
+j12 = F(j12);
+j18 = F(j18);
+I = ideal(j4, j8, j12, j18);
+
+p = diff(x, alpha5);
+q = diff(y, alpha5);
+p5 = F(p);
+q5 = F(q);
+
+p = diff(x, alpha7);
+q = diff(y, alpha7);
+p7 = F(p);
+q7 = F(q);
+
+p = diff(x, alpha11);
+q = diff(y, alpha11);
+p11 = F(p);
+q11 = F(q);
+
+p = diff(x, alpha13);
+q = diff(y, alpha13);
+p13 = F(p);
+q13 = F(q);
+
+p = diff(x, diff(x, beta2));
+q = diff(x, diff(y, beta2));
+r = diff(y, diff(y, beta2));
+p2 = F(p);
+q2 = F(q);
+r2 = F(r);
+
+p = diff(x, diff(x, beta6));
+q = diff(x, diff(y, beta6));
+r = diff(y, diff(y, beta6));
+p6 = F(p);
+q6 = F(q);
+r6 = F(r);
+
+p = diff(x, diff(x, beta8));
+q = diff(x, diff(y, beta8));
+r = diff(y, diff(y, beta8));
+p8 = F(p);
+q8 = F(q);
+r8 = F(r);
+
+p = diff(x, diff(x, diff(x, gamma3)));
+q = diff(x, diff(x, diff(y, gamma3)));
+r = diff(x, diff(y, diff(y, gamma3)));
+t = diff(y, diff(y, diff(y, gamma3)));
+p3 = F(p);
+q3 = F(q);
+r3 = F(r);
+t3 = F(t);
+
+p = diff(x, diff(x, diff(x, gamma5)));
+q = diff(x, diff(x, diff(y, gamma5)));
+r = diff(x, diff(y, diff(y, gamma5)));
+t = diff(y, diff(y, diff(y, gamma5)));
+p55 = F(p);
+q55 = F(q);
+r55 = F(r);
+t55 = F(t);
+
+p = diff(x, diff(x, diff(x, gamma9)));
+q = diff(x, diff(x, diff(y, gamma9)));
+r = diff(x, diff(y, diff(y, gamma9)));
+t = diff(y, diff(y, diff(y, gamma9)));
+p9 = F(p);
+q9 = F(q);
+r9 = F(r);
+t9 = F(t);
+
+# I contains alpha7^2 and alpha7*alpha13
+I = I + ideal(p7*p13, p7*q13+p13*q7, q7*q13, p7^2, p7*q7, q7^2)
+
+# Here is the ideal of the categorical quotient.
+
+G = map(R,QQ[u1,u2,u3,u4,u5,u6,u7],{j2,j41,j42,j43,j44,j45,j6});
+
+I = ker G;
+
+
+# Compile the following lines to find the nullcone and its dimension.
+
+F = map(QQ[s1,s2,s3,s4,s5,s6],R,{s1,s2,s3,s4,s5,s6,0,0});
+
+j4 = F(j4);
+j8 = F(j8);
+j12 = F(j12);
+j18 = F(j18);
+
+J = ideal(j4,j8,j12,j18);
+dim J;
+
+# Erase everything above, and then compile this section to find the categorical quotient V(I).
+
+R=QQ[u_1,u_2,u_3,u_4];
+I = ideal(16*u_4^2 - u_1^3*u_3^2 + 2*u_1^2*u_2^2*u_3 - u_1*u_2^4 + 72*u_1*u_2*u_3^2 - 8*u_2^3*u_3 + 432*u_3^3);
+dim I;
+isPrime(I);
+i = ideal(singularLocus(I));
