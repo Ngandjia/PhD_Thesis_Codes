@@ -12,66 +12,62 @@ f = a_1*x^5 + 5*a_2*x^4*y + 10*a_3*x^3*y^2 + 10*a_4*x^2*y^3 + 5*a_5*x*y^4 + a_6*
 
 # HERE ARE COVARIANTS OF ORDER 0
 
-c = transvectant(f, f, 2);
-c1 = transvectant(f, f, 4)/2;
-c2 = transvectant(f, c1, 2);
-c3 = transvectant(c2, c2, 2);
-c4 = transvectant(c2, c1 ,2);
-j4 = -5*transvectant(c, c, 6);
-j8 = transvectant(c1, c3, 2);
-j12 = transvectant(c3, c3, 2)/6;
-j18 = -transvectant(transvectant(c4, c3, 1), transvectant(c1, c4, 1), 1)/3;
+c1 = transvectant(f, f, 2);
+c2 = transvectant(f, f, 4)/2;
+c3 = transvectant(f, c2, 2);
+c4 = transvectant(c3, c3, 2);
+c5 = transvectant(c2, c3 ,2);
+j4 = -5*transvectant(c1, c1, 6);
+j8 = transvectant(c4, c2, 2);
+j12 = transvectant(c4, c4, 2)/6;
+j18 = transvectant(transvectant(c5, c2, 1), transvectant(c5, c4, 1), 1)/3;
 
 # HERE ARE COVARIANTS OF ORDER 1
 
 # The only covariant of degree 5 :
-c1 = transvectant(f, f, 4); 
-c2 = transvectant(f, c1, 2);
-alpha5 = transvectant(c1, c2, 2)/4;
+alpha5 = c5;
 # The only covariant of degree 7 :
-alpha7 = transvectant(c1, alpha5, 1);
+alpha7 = 2*transvectant(c5, c2, 1);
 # The new covariant of degree 11 :
-c3 = transvectant(f, f, 2);
-c4 = transvectant(c3, c1, 2);
-c5 = transvectant(c3, c4, 4);
-alpha11 = -25*transvectant(alpha5, c5, 1);
+c6 = transvectant(c1, c2, 2);
+c7 = transvectant(c1, c6, 4);
+alpha11 = (-50*transvectant(c7, c5, 1) + 3*j4*alpha7)/40;
 # The new covariant of degree 13 :
-alpha13 = 25*transvectant(alpha7, c5, 1)/3;
+alpha13 = ((50*transvectant(c7, alpha7, 1)/3 - j4^2*alpha5)/40 - j8*alpha5)/2;
 
 # HERE ARE COVARIANTS OF ORDER 2
 
 # The only covariant of degree 2 :
-beta2 = c1/2;
+beta2 = c2;
 # The new covariant of degree 6 :
-c6 = transvectant(c3, c3, 4);
-beta6 = 75*transvectant(beta2, c6, 2)/4;
+beta6 = (-5*transvectant(beta2, c6, 2) + j4*beta2)/10;
 # The only covariant of degree 8 is :
-beta8 = -transvectant(beta6, beta2, 1)/15;
+beta8 = 2*transvectant(beta6, beta2, 1);
 
 # HERE ARE COVARIANTS OF ORDER 3
 
 # The only covariant of degree 3 :
-gamma3 = transvectant(c1, f, 2)/6;
+gamma3 = -transvectant(c2, f, 2)/3;
 # The only covariant of degree 5 :
-gamma5 = 3*transvectant(gamma3, c1, 1);
+gamma5 = 6*transvectant(gamma3, c2, 1);
 # The only covariant of degree 9 :
-gamma9 = transvectant(transvectant(c2,c2,2),c2,1)/8;
+gamma9 = transvectant(transvectant(c3,c3,2),c3,1);
 
 # HERE ARE COVARIANTS OF ORDER 4
 
 # The new covariant of degree 4 :
-delta4 = -25*transvectant(c3, c3, 4)/4;
+delta4 = -25*transvectant(c1, c1, 4)/4;
 # The only covariant of degree 6 :
-c7 = transvectant(delta4, f, 4)
-delta6 = -transvectant(c7, f, 1)/4;
+c8 = transvectant(delta4, f, 4)
+delta6 = transvectant(f, c8, 1)/4;
 
 # HERE ARE COVARIANTS OF ORDER 5
 
 # The only covariant of degree 3 :
-epsilon3 = transvectant(f,c1,1);
+epsilon3 = 2*transvectant(f,c2,1);
 # The new covariant of degree 7 :
-c8 = transvectant(epsilon3, epsilon3, 4);
-epsilon7 = 25*transvectant(c8, f, 1);
+c9 = transvectant(epsilon3, epsilon3, 4);
+epsilon7 = (-25*transvectant(c9, f, 1) + 25*j4*epsilon3)/48;
 
 # Generators of the ideal
 
