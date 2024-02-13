@@ -58,7 +58,7 @@ gamma9 = transvectant(transvectant(c3,c3,2),c3,1);
 # The new covariant of degree 4 :
 delta4 = -25*transvectant(c1, c1, 4)/4;
 # The only covariant of degree 6 :
-c8 = transvectant(delta4, f, 4)
+c8 = transvectant(delta4, f, 4);
 delta6 = transvectant(f, c8, 1)/4;
 
 # HERE ARE COVARIANTS OF ORDER 5
