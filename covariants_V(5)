@@ -63,6 +63,8 @@ delta6 = transvectant(f, c8, 1)/4;
 
 # HERE ARE COVARIANTS OF ORDER 5
 
+# The only covariant of degree 1 :
+epsilon1 = f;
 # The only covariant of degree 3 :
 epsilon3 = 2*transvectant(f,c2,1);
 # The new covariant of degree 7 :
@@ -81,71 +83,94 @@ I = ideal(j4, j8, j12, j18);
 
 p = diff(x, alpha5);
 q = diff(y, alpha5);
-p5 = F(p);
-q5 = F(q);
+pa5 = F(p);
+qa5 = F(q);
 
 p = diff(x, alpha7);
 q = diff(y, alpha7);
-p7 = F(p);
-q7 = F(q);
+pa7 = F(p);
+qa7 = F(q);
 
 p = diff(x, alpha11);
 q = diff(y, alpha11);
-p11 = F(p);
-q11 = F(q);
+pa11 = F(p);
+qa11 = F(q);
 
 p = diff(x, alpha13);
 q = diff(y, alpha13);
-p13 = F(p);
-q13 = F(q);
+pa13 = F(p);
+qa13 = F(q);
 
-p = diff(x, diff(x, beta2));
-q = diff(x, diff(y, beta2));
-r = diff(y, diff(y, beta2));
-p2 = F(p);
-q2 = F(q);
-r2 = F(r);
+p = diff(x^2, beta2);
+q = diff(x*y, beta2);
+r = diff(y^2, beta2);
+pb2 = F(p);
+qb2 = F(q);
+rb2 = F(r);
 
-p = diff(x, diff(x, beta6));
-q = diff(x, diff(y, beta6));
-r = diff(y, diff(y, beta6));
-p6 = F(p);
-q6 = F(q);
-r6 = F(r);
+p = diff(x^2, beta6);
+q = diff(x*y, beta6);
+r = diff(y^2, beta6);
+pb6 = F(p);
+qb6 = F(q);
+rb6 = F(r);
 
-p = diff(x, diff(x, beta8));
-q = diff(x, diff(y, beta8));
-r = diff(y, diff(y, beta8));
-p8 = F(p);
-q8 = F(q);
-r8 = F(r);
+p = diff(x^2, beta8);
+q = diff(x*y, beta8);
+r = diff(y^2, beta8);
+pb8 = F(p);
+qb8 = F(q);
+rb8 = F(r);
 
-p = diff(x, diff(x, diff(x, gamma3)));
-q = diff(x, diff(x, diff(y, gamma3)));
-r = diff(x, diff(y, diff(y, gamma3)));
-t = diff(y, diff(y, diff(y, gamma3)));
-p3 = F(p);
-q3 = F(q);
-r3 = F(r);
-t3 = F(t);
+p = diff(x^3, gamma3);
+q = diff(x^2*y, gamma3);
+r = diff(x*y^2, gamma3);
+s = diff(y^3, gamma3);
+pg3 = F(p);
+qg3 = F(q);
+rg3 = F(r);
+sg3 = F(s);
 
-p = diff(x, diff(x, diff(x, gamma5)));
-q = diff(x, diff(x, diff(y, gamma5)));
-r = diff(x, diff(y, diff(y, gamma5)));
-t = diff(y, diff(y, diff(y, gamma5)));
-p55 = F(p);
-q55 = F(q);
-r55 = F(r);
-t55 = F(t);
+p = diff(x^3, gamma5);
+q = diff(x^2*y, gamma5);
+r = diff(x*y^2, gamma5);
+s = diff(y^3, gamma5);
+pg5 = F(p);
+qg5 = F(q);
+rg5 = F(r);
+sg5 = F(s);
 
-p = diff(x, diff(x, diff(x, gamma9)));
-q = diff(x, diff(x, diff(y, gamma9)));
-r = diff(x, diff(y, diff(y, gamma9)));
-t = diff(y, diff(y, diff(y, gamma9)));
-p9 = F(p);
-q9 = F(q);
-r9 = F(r);
-t9 = F(t);
+p = diff(x^3, gamma9);
+q = diff(x^2*y, gamma9);
+r = diff(x*y^2, gamma9);
+s = diff(y^3, gamma9);
+pg9 = F(p);
+qg9 = F(q);
+rg9 = F(r);
+sg9 = F(s);
+
+p = diff(x^4, delta4);
+q = diff(x^3*y, delta4);
+r = diff(x^2*y^2, delta4);
+s = diff(x*y^3, delta4);
+t = diff(y^4, delta4);
+pd4 = F(p);
+qd4 = F(q);
+rd4 = F(r);
+sd4 = F(s);
+td4 = F(t);
+
+p = diff(x^4, delta6);
+q = diff(x^3*y, delta6);
+r = diff(x^2*y^2, delta6);
+s = diff(x*y^3, delta6);
+t = diff(y^4, delta6);
+pd6 = F(p);
+qd6 = F(q);
+rd6 = F(r);
+sd6 = F(s);
+td6 = F(t);
+
 
 # I contains alpha7^2 and alpha7*alpha13
 I = I + ideal(p7*p13, p7*q13+p13*q7, q7*q13, p7^2, p7*q7, q7^2)
