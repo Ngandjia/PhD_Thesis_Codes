@@ -171,6 +171,45 @@ rd6 = F(r);
 sd6 = F(s);
 td6 = F(t);
 
+p = diff(x^5, epsilon1);
+q = diff(x^4*y, epsilon1);
+r = diff(x^3*y^2, epsilon1);
+s = diff(x^2*y^3, epsilon1);
+t = diff(x*y^4, epsilon1);
+u = diff(y^5, epsilon1);
+pe1 = F(p);
+qe1 = F(q);
+re1 = F(r);
+se1 = F(s);
+te1 = F(t);
+ue1 = F(u);
+
+p = diff(x^5, epsilon3);
+q = diff(x^4*y, epsilon3);
+r = diff(x^3*y^2, epsilon3);
+s = diff(x^2*y^3, epsilon3);
+t = diff(x*y^4, epsilon3);
+u = diff(y^5, epsilon3);
+pe3 = F(p);
+qe3 = F(q);
+re3 = F(r);
+se3 = F(s);
+te3 = F(t);
+ue3 = F(u);
+
+p = diff(x^5, epsilon7);
+q = diff(x^4*y, epsilon7);
+r = diff(x^3*y^2, epsilon7);
+s = diff(x^2*y^3, epsilon7);
+t = diff(x*y^4, epsilon7);
+u = diff(y^5, epsilon7);
+pe7 = F(p);
+qe7 = F(q);
+re7 = F(r);
+se7 = F(s);
+te7 = F(t);
+ue7 = F(u);
+
 
 # I contains alpha7^2 and alpha7*alpha13
 I = I + ideal(p7*p13, p7*q13+p13*q7, q7*q13, p7^2, p7*q7, q7^2)
