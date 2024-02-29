@@ -211,8 +211,8 @@ te7 = F(t);
 ue7 = F(u);
 
 
-# I contains alpha7^2 and alpha7*alpha13
-I = I + ideal(p7*p13, p7*q13+p13*q7, q7*q13, p7^2, p7*q7, q7^2)
+# Elements already in I
+I = ideal(j4, j8, j12, j18, pa13, qa13, pa7^2, qa7^2, pa7*qa7, pa7*pa11, pa7*qa11, qa7*pa11, qa7*qa11, pa11^2, qa11^2, pa11*qa11, pa5^3, pa5^2*qa5, pa5*qa5^2, qa5^3, pa7*pb8, pa7*qb8+qa7*pb8, pa7*rb8+qa7*qb8, qa7*rb8, pa7*pa5^2, pa7*pa5*qa5+qa7*pa5^2, pa7*qa5^2+qa7*pa5*qa5, qa7*qa5^2, pa11*pb6, pa11*qb6+qa11*pb6, pa11*rb6+qa11*qb6, qa11*rb6, pa11*pb8, pa11*qb8+qa11*pb8, pa11*rb8+qa11*qb8, qa11*rb8, pa5^2*pb6, pa5^2*qb6+pa5*qa5*pb6, pa5^2*rb6+pa5*qa5*qb6+qa5^2*pb6, pa5*qa5*rb6+qa5^2*qb6, qa5^2*rb6, pa5^2*pb8, pa5^2*qb8+pa5*qa5*pb8, pa5^2*rb8+pa5*qa5*qb8+qa5^2*pb8, pa5*qa5*rb8+qa5^2*qb8, qa5^2*rb8, pa7*pg9, pa7*qg9+qa7*pg9, pa7*rg9+qa7*qg9, pa7*sg9+qa7*rg9, qa7*sg9, pa11*pg5, pa11*qg5+qa11*pg5, pa11*rg5+qa11*qg5, pa11*sg5+qa11*rg5, qa11*sg5, pb8^2, pb8*qb8, pb8*rb8+qb8^2, qb8*rb8, rb8^2, pa5*pa7*pb6, pa5*pa7*qb6+(pa5*qa7+qa5*pa7)*pb6, pa5*pa7*rb6+qa5*qa7*pb6+(pa5*qa7+qa5*pa7)*qb6, (pa5*qa7+qa5*pa7)*rb6+qa5*qa7*qb6, qa5*qa7*rb6, pa5*pa11*pb2, pa5*pa11*qb2+(pa5*qa11+qa5*pa11)*pb2, pa5*pa11*rb2+qa5*qa11*pb2+(pa5*qa11+qa5*pa11)*qb2, (pa5*qa11+qa5*pa11)*rb2+qa5*qa11*qb2, qa5*qa11*rb2);
 
 # Here is the ideal of the categorical quotient.
 
