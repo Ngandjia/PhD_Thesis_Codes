@@ -275,6 +275,7 @@ gamma9 = transvectant(transvectant(c3,c3,2),c3,1);
 delta4 = -25*transvectant(c1, c1, 4)/4;
 c8 = transvectant(delta4, f, 4);
 delta6 = transvectant(f, c8, 1)/4;
+epsilon1 = f;
 epsilon3 = 2*transvectant(f,c2,1);
 c9 = transvectant(epsilon3, epsilon3, 4);
 epsilon7 = (-25*transvectant(c9, f, 1) + 25*j4*epsilon3)/48;
