@@ -78,6 +78,11 @@ phi2 = c1/2;
 # The only covariant of degree 4 :
 phi4 = 2*transvectant(c1, c2, 1);
 
+# HERE ARE COVARIANTS OF ORDER 7
+
+# The new covariant of degree 5 :
+eta5 = transvectant(c3, c1, 1);
+
 
 # Generators of the ideal
 
