@@ -1,0 +1,153 @@
+These lines of SageMath codes simulate the membership in I.
+
+
+from sage.rings.invariants.invariant_theory import AlgebraicForm, transvectant
+R.<a_1,a_2,a_3,a_4,a_5,a_6,x,y> = PolynomialRing(QQ, 8, order='degrevlex')
+
+f = AlgebraicForm(2, 5, a_1*x^5 + 5*a_2*x^4*y + 10*a_3*x^3*y^2 + 10*a_4*x^2*y^3 + 5*a_5*x*y^4 + a_6*y^5, x, y)
+c1 = transvectant(f, f, 2);
+c2 = AlgebraicForm(2, 2, transvectant(f, f, 4).form()/2, x, y);
+c3 = transvectant(f, c2, 2);
+c4 = transvectant(c3, c3, 2);
+c5 = transvectant(c2, c3 ,2);
+
+j4 = -5*transvectant(c1, c1, 6).form();
+j8 = transvectant(c4, c2, 2).form();
+j12 = transvectant(c4, c4, 2).form()/6;
+j18 = transvectant(transvectant(c5, c2, 1), transvectant(c5, c4, 1), 1).form()/3;
+
+alpha5 = c5.form();
+alpha7 = 2*transvectant(c5, c2, 1).form();
+c6 = transvectant(c1, c2, 2);
+c7 = transvectant(c1, c6, 4);
+alpha11 = (-50*transvectant(c7, c5, 1).form() + 3*j4*alpha7)/40;
+alpha13 = ((50*transvectant(c7, AlgebraicForm(2, 1, alpha7, x, y), 1).form()/3 - j4^2*AlgebraicForm(2, 1, alpha5, x, y).form())/40 - j8*alpha5)/2;
+
+beta2 = c2.form();
+beta6 = (-5*transvectant(c2, c6, 2).form() + j4*beta2)/10;
+beta8 = 2*transvectant(AlgebraicForm(2, 2, beta6, x, y), c2, 1).form();
+
+gamma3 = -transvectant(c2, f, 2).form()/3;
+gamma5 = 6*transvectant(AlgebraicForm(2, 3, gamma3, x, y), c2, 1).form();
+gamma9 = transvectant(transvectant(c3,c3,2),c3,1).form();
+
+delta4 = -25*transvectant(c1, c1, 4).form()/4;
+c8 = transvectant(AlgebraicForm(2, 4, delta4, x, y), f, 4);
+delta6 = transvectant(f, c8, 1).form()/4;
+
+epsilon1 = f.form();
+epsilon3 = 2*transvectant(f,c2,1).form();
+c9 = transvectant(AlgebraicForm(2, 5, epsilon3, x, y), AlgebraicForm(2, 5, epsilon3, x, y), 4);
+epsilon7 = 25*(-transvectant(c9, f, 1).form() + j4*epsilon3)/48;
+
+zeta2 = c1.form()/2;
+zeta4 = transvectant(c1, c2, 1).form();
+
+eta5 = transvectant(c3, c1, 1).form();
+
+pa5 = diff(alpha5, x);
+qa5 = diff(alpha5, y);
+
+pa7 = diff(alpha7, x);
+qa7 = diff(alpha7, y);
+
+pa11 = diff(alpha11, x);
+qa11 = diff(alpha11, y);
+
+pa13 = diff(alpha13, x);
+qa13 = diff(alpha13, y);
+
+pb2 = diff(beta2, x, x);
+qb2 = diff(beta2, x, y);
+rb2 = diff(beta2, y, y);
+
+pb6 = diff(beta6, x, x);
+qb6 = diff(beta6, x, y);
+rb6 = diff(beta6, y, y);
+
+pb8 = diff(beta8, x, x);
+qb8 = diff(beta8, x, y);
+rb8 = diff(beta8, y, y);
+
+pg3 = diff(gamma3, x, x, x);
+qg3 = diff(gamma3, x, x, y);
+rg3 = diff(gamma3, x, y, y);
+sg3 = diff(gamma3, y, y, y);
+
+pg5 = diff(gamma5, x, x, x);
+qg5 = diff(gamma5, x, x, y);
+rg5 = diff(gamma5, x, y, y);
+sg5 = diff(gamma5, y, y, y);
+
+pg9 = diff(gamma9, x, x, x);
+qg9 = diff(gamma9, x, x, y);
+rg9 = diff(gamma9, x, y, y);
+sg9 = diff(gamma9, y, y, y);
+
+pd4 = diff(delta4, x, x, x, x);
+qd4 = diff(delta4, x, x, x, y);
+rd4 = diff(delta4, x, x, y, y);
+sd4 = diff(delta4, x, y, y, y);
+td4 = diff(delta4, y, y, y, y);
+
+pd6 = diff(delta6, x, x, x, x);
+qd6 = diff(delta6, x, x, x, y);
+rd6 = diff(delta6, x, x, y, y);
+sd6 = diff(delta6, x, y, y, y);
+td6 = diff(delta6, y, y, y, y);
+
+pe1 = diff(epsilon1, x, x, x, x, x);
+qe1 = diff(epsilon1, x, x, x, x, y);
+re1 = diff(epsilon1, x, x, x, y, y);
+se1 = diff(epsilon1, x, x, y, y, y);
+te1 = diff(epsilon1, x, y, y, y, y);
+ue1 = diff(epsilon1, y, y, y, y, y);
+
+pe3 = diff(epsilon3, x, x, x, x, x);
+qe3 = diff(epsilon3, x, x, x, x, y);
+re3 = diff(epsilon3, x, x, x, y, y);
+se3 = diff(epsilon3, x, x, y, y, y);
+te3 = diff(epsilon3, x, y, y, y, y);
+ue3 = diff(epsilon3, y, y, y, y, y);
+
+pe7 = diff(epsilon7, x, x, x, x, x);
+qe7 = diff(epsilon7, x, x, x, x, y);
+re7 = diff(epsilon7, x, x, x, y, y);
+se7 = diff(epsilon7, x, x, y, y, y);
+te7 = diff(epsilon7, x, y, y, y, y);
+ue7 = diff(epsilon7, y, y, y, y, y);
+
+pz2 = diff(zeta2, x, x, x, x, x, x);
+qz2 = diff(zeta2, x, x, x, x, x, y);
+rz2 = diff(zeta2, x, x, x, x, y, y);
+sz2 = diff(zeta2, x, x, x, y, y, y);
+tz2 = diff(zeta2, x, x, y, y, y, y);
+uz2 = diff(zeta2, x, y, y, y, y, y);
+vz2 = diff(zeta2, y, y, y, y, y, y);
+
+pz4 = diff(zeta4, x, x, x, x, x, x);
+qz4 = diff(zeta4, x, x, x, x, x, y);
+rz4 = diff(zeta4, x, x, x, x, y, y);
+sz4 = diff(zeta4, x, x, x, y, y, y);
+tz4 = diff(zeta4, x, x, y, y, y, y);
+uz4 = diff(zeta4, x, y, y, y, y, y);
+vz4 = diff(zeta4, y, y, y, y, y, y);
+
+L_math = [[alpha5,pa5,qa5], [alpha7,pa7,qa7], [alpha11,pa11,qa11], [alpha13,pa13,qa13], [beta2,pb2,qb2,rb2], [beta6,pb6,qb6,rb6], [beta8,pb8,qb8,rb8], [gamma3,pg3,qg3,rg3,sg3], [gamma5,pg5,qg5,rg5,sg5], [gamma9,pg9,qg9,rg9,sg9], [delta4,pd4,qd4,rd4,sd4,td4], [delta6,pd6,qd6,rd6,sd6,td6], [epsilon1,pe1,qe1,re1,se1,te1,ue1], [epsilon3,pe3,qe3,re3,se3,te3,ue3], [epsilon7,pe7,qe7,re7,se7,te7,ue7], [zeta2, pz2, qz2, rz2, sz2, tz2, uz2, vz2], [zeta4, pz4, qz4, rz4, sz4, tz4, uz4, vz4]]
+L_greek = ["alpha5", "alpha7", "alpha11", "alpha13", "beta2", "beta6", "beta8", "gamma3", "gamma5", "gamma9", "delta4", "delta6", "epsilon1", "epsilon3", "epsilon7", "zeta2", "zeta4"]
+for element1 in L_math :
+    print(f"If {L_greek[L_math.index(element1)]} belongs to I, so do the following : ")
+    print("")
+    I = ideal(j4, j8, j12, j18)
+    for i in range(1, len(element1)) :
+        I = I + ideal(element1[i])
+    for element2 in L_math :
+        if element2 == element1 :
+            continue
+        count = 0
+        for i in range(1, len(element2)) :
+            if element2[i] in I :
+                count = count + 1
+        if count == len(element2) - 1 :
+            print(L_greek[L_math.index(element2)])
+    print("")
