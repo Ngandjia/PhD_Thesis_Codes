@@ -69,7 +69,7 @@ epsilon1 = f;
 epsilon3 = 2*transvectant(f,c2,1);
 # The new covariant of degree 7 :
 c9 = transvectant(epsilon3, epsilon3, 4);
-epsilon7 = (-25*transvectant(c9, f, 1) + 25*j4*epsilon3)/48;
+epsilon7 = 25*(-transvectant(c9, f, 1) + j4*epsilon3)/48;
 
 # HERE ARE COVARIANTS OF ORDER 6
 
