@@ -76,7 +76,7 @@ epsilon7 = 25*(-transvectant(c9, f, 1) + j4*epsilon3)/48;
 # The only covariant of degree 2 :
 zeta2 = c1/2;
 # The only covariant of degree 4 :
-zeta4 = 2*transvectant(c1, c2, 1);
+zeta4 = transvectant(c1, c2, 1);
 
 # HERE ARE COVARIANTS OF ORDER 7
 
