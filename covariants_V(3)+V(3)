@@ -1,0 +1,264 @@
+# This code computes in Macaulay2, covariants of V(3)+V(3) using transvectants.
+
+R=QQ[a_1,a_2,a_3,a_4,b_1,b_2,b_3,b_4,x,y,Degrees=>{0,0,0,0,0,0,0,0,1,1}, MonomialOrder=>GRevLex];
+
+Derx = (k,f) -> (g = f;for i in 1..k do g = diff(x,g);g);
+Dery = (k,f) -> (g = f;for i in 1..k do g = diff(y,g);g);
+
+transvectant = (f,g,k) -> (p = first degree f; q = first degree g;s = 0;for i in 0..k do 
+s = s + (-1)^i*binomial(k,i)*Dery(i,Derx(k-i,f))*Dery(k-i,Derx(i,g));((p-k)!*(q-k)!/(p!*q!))*s);
+
+f1 = a_1*x^3 + 3*a_2*x^2*y + 3*a_3*x*y^2 + a_4*y^3;
+f2 = b_1*x^3 + 3*b_2*x^2*y + 3*b_3*x*y^2 + b_4*y^3; 
+
+j2 = transvectant(f1,f2,3);
+j41 = transvectant(transvectant(f1,f1,2),transvectant(f1,f1,2),2);
+j42 = transvectant(transvectant(f2,f2,2),transvectant(f2,f2,2),2);
+j43 = transvectant(transvectant(f1,f1,2),transvectant(f2,f2,2),2);
+j44 = transvectant(transvectant(f1,f1,2),transvectant(f1,f2,2),2);
+j45 = transvectant(transvectant(f2,f2,2),transvectant(f1,f2,2),2);
+j6 = transvectant(transvectant(f1,transvectant(f1,f2,2),2),transvectant(f2,transvectant(f1,f2,2),2),1);
+
+# HERE ARE COVARIANTS OF ORDER 0
+
+c1 = transvectant(f, f, 2);
+c2 = transvectant(f, f, 4)/2;
+c3 = transvectant(f, c2, 2);
+c4 = transvectant(c3, c3, 2);
+c5 = transvectant(c2, c3 ,2);
+j4 = -5*transvectant(c1, c1, 6);
+j8 = transvectant(c4, c2, 2);
+j12 = transvectant(c4, c4, 2)/6;
+j18 = transvectant(transvectant(c5, c2, 1), transvectant(c5, c4, 1), 1)/3;
+
+# HERE ARE COVARIANTS OF ORDER 1
+
+# The only covariant of degree 5 :
+alpha5 = c5;
+# The only covariant of degree 7 :
+alpha7 = 2*transvectant(c5, c2, 1);
+# The new covariant of degree 11 :
+c6 = transvectant(c1, c2, 2);
+c7 = transvectant(c1, c6, 4);
+alpha11 = (-50*transvectant(c7, c5, 1) + 3*j4*alpha7)/40;
+# The new covariant of degree 13 :
+alpha13 = ((50*transvectant(c7, alpha7, 1)/3 - j4^2*alpha5)/40 - j8*alpha5)/2;
+
+# HERE ARE COVARIANTS OF ORDER 2
+
+# The only covariant of degree 2 :
+beta2 = c2;
+# The new covariant of degree 6 :
+beta6 = (-5*transvectant(beta2, c6, 2) + j4*beta2)/10;
+# The only covariant of degree 8 is :
+beta8 = 2*transvectant(beta6, beta2, 1);
+
+# HERE ARE COVARIANTS OF ORDER 3
+
+# The only covariant of degree 3 :
+gamma3 = -transvectant(c2, f, 2)/3;
+# The only covariant of degree 5 :
+gamma5 = 6*transvectant(gamma3, c2, 1);
+# The only covariant of degree 9 :
+gamma9 = transvectant(transvectant(c3,c3,2),c3,1);
+
+# HERE ARE COVARIANTS OF ORDER 4
+
+# The new covariant of degree 4 :
+delta4 = -25*transvectant(c1, c1, 4)/4;
+# The only covariant of degree 6 :
+c8 = transvectant(delta4, f, 4);
+delta6 = transvectant(f, c8, 1)/4;
+
+# HERE ARE COVARIANTS OF ORDER 5
+
+# The only covariant of degree 1 :
+epsilon1 = f;
+# The only covariant of degree 3 :
+epsilon3 = 2*transvectant(f,c2,1);
+# The new covariant of degree 7 :
+c9 = transvectant(epsilon3, epsilon3, 4);
+epsilon7 = 25*(-transvectant(c9, f, 1) + j4*epsilon3)/48;
+
+# HERE ARE COVARIANTS OF ORDER 6
+
+# The only covariant of degree 2 :
+zeta2 = c1/2;
+# The only covariant of degree 4 :
+zeta4 = transvectant(c1, c2, 1);
+
+# HERE ARE COVARIANTS OF ORDER 7
+
+# The new covariant of degree 5 :
+eta5 = transvectant(c3, c1, 1);
+
+
+# Generators of the ideal
+
+F = map(QQ[s1,s2,s3,s4,s5,s6],R,{s1,s2,s3,s4,s5,s6,0,0});
+
+j4 = F(j4);
+j8 = F(j8);
+j12 = F(j12);
+j18 = F(j18);
+I = ideal(j4, j8, j12, j18);
+
+p = diff(x, alpha5);
+q = diff(y, alpha5);
+pa5 = F(p);
+qa5 = F(q);
+
+p = diff(x, alpha7);
+q = diff(y, alpha7);
+pa7 = F(p);
+qa7 = F(q);
+
+p = diff(x, alpha11);
+q = diff(y, alpha11);
+pa11 = F(p);
+qa11 = F(q);
+
+p = diff(x, alpha13);
+q = diff(y, alpha13);
+pa13 = F(p);
+qa13 = F(q);
+
+p = diff(x^2, beta2);
+q = diff(x*y, beta2);
+r = diff(y^2, beta2);
+pb2 = F(p);
+qb2 = F(q);
+rb2 = F(r);
+
+p = diff(x^2, beta6);
+q = diff(x*y, beta6);
+r = diff(y^2, beta6);
+pb6 = F(p);
+qb6 = F(q);
+rb6 = F(r);
+
+p = diff(x^2, beta8);
+q = diff(x*y, beta8);
+r = diff(y^2, beta8);
+pb8 = F(p);
+qb8 = F(q);
+rb8 = F(r);
+
+p = diff(x^3, gamma3);
+q = diff(x^2*y, gamma3);
+r = diff(x*y^2, gamma3);
+s = diff(y^3, gamma3);
+pg3 = F(p);
+qg3 = F(q);
+rg3 = F(r);
+sg3 = F(s);
+
+p = diff(x^3, gamma5);
+q = diff(x^2*y, gamma5);
+r = diff(x*y^2, gamma5);
+s = diff(y^3, gamma5);
+pg5 = F(p);
+qg5 = F(q);
+rg5 = F(r);
+sg5 = F(s);
+
+p = diff(x^3, gamma9);
+q = diff(x^2*y, gamma9);
+r = diff(x*y^2, gamma9);
+s = diff(y^3, gamma9);
+pg9 = F(p);
+qg9 = F(q);
+rg9 = F(r);
+sg9 = F(s);
+
+p = diff(x^4, delta4);
+q = diff(x^3*y, delta4);
+r = diff(x^2*y^2, delta4);
+s = diff(x*y^3, delta4);
+t = diff(y^4, delta4);
+pd4 = F(p);
+qd4 = F(q);
+rd4 = F(r);
+sd4 = F(s);
+td4 = F(t);
+
+p = diff(x^4, delta6);
+q = diff(x^3*y, delta6);
+r = diff(x^2*y^2, delta6);
+s = diff(x*y^3, delta6);
+t = diff(y^4, delta6);
+pd6 = F(p);
+qd6 = F(q);
+rd6 = F(r);
+sd6 = F(s);
+td6 = F(t);
+
+p = diff(x^5, epsilon1);
+q = diff(x^4*y, epsilon1);
+r = diff(x^3*y^2, epsilon1);
+s = diff(x^2*y^3, epsilon1);
+t = diff(x*y^4, epsilon1);
+u = diff(y^5, epsilon1);
+pe1 = F(p);
+qe1 = F(q);
+re1 = F(r);
+se1 = F(s);
+te1 = F(t);
+ue1 = F(u);
+
+p = diff(x^5, epsilon3);
+q = diff(x^4*y, epsilon3);
+r = diff(x^3*y^2, epsilon3);
+s = diff(x^2*y^3, epsilon3);
+t = diff(x*y^4, epsilon3);
+u = diff(y^5, epsilon3);
+pe3 = F(p);
+qe3 = F(q);
+re3 = F(r);
+se3 = F(s);
+te3 = F(t);
+ue3 = F(u);
+
+p = diff(x^5, epsilon7);
+q = diff(x^4*y, epsilon7);
+r = diff(x^3*y^2, epsilon7);
+s = diff(x^2*y^3, epsilon7);
+t = diff(x*y^4, epsilon7);
+u = diff(y^5, epsilon7);
+pe7 = F(p);
+qe7 = F(q);
+re7 = F(r);
+se7 = F(s);
+te7 = F(t);
+ue7 = F(u);
+
+
+# Elements already in I
+I = ideal(j4, j8, j12, j18, pa13, qa13, pa7^2, qa7^2, pa7*qa7, pa7*pa11, pa7*qa11, qa7*pa11, qa7*qa11, pa11^2, qa11^2, pa11*qa11, pa5^3, pa5^2*qa5, pa5*qa5^2, qa5^3, pa7*pb8, pa7*qb8+qa7*pb8, pa7*rb8+qa7*qb8, qa7*rb8, pa7*pa5^2, pa7*pa5*qa5+qa7*pa5^2, pa7*qa5^2+qa7*pa5*qa5, qa7*qa5^2, pa11*pb6, pa11*qb6+qa11*pb6, pa11*rb6+qa11*qb6, qa11*rb6, pa11*pb8, pa11*qb8+qa11*pb8, pa11*rb8+qa11*qb8, qa11*rb8, pa5^2*pb6, pa5^2*qb6+pa5*qa5*pb6, pa5^2*rb6+pa5*qa5*qb6+qa5^2*pb6, pa5*qa5*rb6+qa5^2*qb6, qa5^2*rb6, pa5^2*pb8, pa5^2*qb8+pa5*qa5*pb8, pa5^2*rb8+pa5*qa5*qb8+qa5^2*pb8, pa5*qa5*rb8+qa5^2*qb8, qa5^2*rb8, pa7*pg9, pa7*qg9+qa7*pg9, pa7*rg9+qa7*qg9, pa7*sg9+qa7*rg9, qa7*sg9, pa11*pg5, pa11*qg5+qa11*pg5, pa11*rg5+qa11*qg5, pa11*sg5+qa11*rg5, qa11*sg5, pb8^2, pb8*qb8, pb8*rb8+qb8^2, qb8*rb8, rb8^2, pa5*pa7*pb6, pa5*pa7*qb6+(pa5*qa7+qa5*pa7)*pb6, pa5*pa7*rb6+qa5*qa7*pb6+(pa5*qa7+qa5*pa7)*qb6, (pa5*qa7+qa5*pa7)*rb6+qa5*qa7*qb6, qa5*qa7*rb6, pa5*pa11*pb2, pa5*pa11*qb2+(pa5*qa11+qa5*pa11)*pb2, pa5*pa11*rb2+qa5*qa11*pb2+(pa5*qa11+qa5*pa11)*qb2, (pa5*qa11+qa5*pa11)*rb2+qa5*qa11*qb2, qa5*qa11*rb2);
+
+# Here is the ideal of the categorical quotient.
+
+G = map(R,QQ[u1,u2,u3,u4,u5,u6,u7],{j2,j41,j42,j43,j44,j45,j6});
+
+I = ker G;
+
+
+# Compile the following lines to find the nullcone and its dimension.
+
+F = map(QQ[s1,s2,s3,s4,s5,s6],R,{s1,s2,s3,s4,s5,s6,0,0});
+
+j4 = F(j4);
+j8 = F(j8);
+j12 = F(j12);
+j18 = F(j18);
+
+J = ideal(j4,j8,j12,j18);
+dim J;
+
+# Erase everything above, and then compile this section to find the categorical quotient V(I).
+
+R=QQ[u_1,u_2,u_3,u_4];
+I = ideal(16*u_4^2 - u_1^3*u_3^2 + 2*u_1^2*u_2^2*u_3 - u_1*u_2^4 + 72*u_1*u_2*u_3^2 - 8*u_2^3*u_3 + 432*u_3^3);
+dim I;
+isPrime(I);
+i = ideal(singularLocus(I));
