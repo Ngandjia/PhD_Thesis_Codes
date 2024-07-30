@@ -13,44 +13,48 @@ f2 = b_1*x^3 + 3*b_2*x^2*y + 3*b_3*x*y^2 + b_4*y^3;
 
 # HERE ARE COVARIANTS OF ORDER 0 (they are all irreducible)
 
+c1 = transvectant(f1,f1,2);
+c2 = transvectant(f1,f2,2);
+c3 = transvectant(f2,f2,2);
+
 j2 = transvectant(f1,f2,3);
-j41 = transvectant(transvectant(f1,f1,2),transvectant(f1,f1,2),2)/2;
-j42 = transvectant(transvectant(f2,f2,2),transvectant(f2,f2,2),2)/2;
-j43 = transvectant(transvectant(f1,f1,2),transvectant(f2,f2,2),2)/2;
-j44 = transvectant(transvectant(f1,f1,2),transvectant(f1,f2,2),2);
-j45 = transvectant(transvectant(f2,f2,2),transvectant(f1,f2,2),2);
-j6 = transvectant(transvectant(f1,transvectant(f1,f2,2),2),transvectant(f2,transvectant(f1,f2,2),2),1);
+j41 = transvectant(c1, c1, 2)/2;
+j42 = transvectant(c3, c3, 2)/2;
+j43 = transvectant(c1, c3, 2)/2;
+j44 = transvectant(c1, c2, 2);
+j45 = transvectant(c3, c2, 2);
+j6 = transvectant(transvectant(f1, c2, 2), transvectant(f2, c2, 2), 1);
 
 # HERE ARE COVARIANTS OF ORDER 1
 
 # The only covariants of degree 3 (they are linearly independant):
-alpha3_1 = transvectant(transvectant(f1,f1,2), f2, 2)/2;
-alpha3_2 = transvectant(transvectant(f2,f2,2), f1, 2)/2;
+alpha3_1 = transvectant(c1, f2, 2)/2;
+alpha3_2 = transvectant(c3, f1, 2)/2;
 
 # The new covariants of degree 5 :
-alpha5_1 = transvectant(alpha3_1, transvectant(f1, f1, 2), 1);
-alpha5_2 = transvectant(alpha3_1, transvectant(f2, f2, 2), 1);
-alpha5_3 = transvectant(alpha3_2, transvectant(f1, f1, 2), 1);
-alpha5_4 = transvectant(alpha3_2, transvectant(f2, f2, 2), 1); 
+alpha5_1 = transvectant(alpha3_1, c1, 1);
+alpha5_2 = transvectant(alpha3_1, c3, 1);
+alpha5_3 = transvectant(alpha3_2, c1, 1);
+alpha5_4 = transvectant(alpha3_2, c3, 1); 
 
 # The new covariants of degree 7 :
-alpha7_1 = transvectant(alpha5_1, transvectant(f2, f2, 2), 1);
-alpha7_2 = 2*transvectant(alpha5_1, transvectant(f1, f2, 2), 1);
-alpha7_3 = transvectant(alpha5_2, transvectant(f1, f1, 2), 1);
-alpha7_4 = 2*transvectant(alpha5_2, transvectant(f1, f2, 2), 1);
+alpha7_1 = transvectant(alpha5_1, c3, 1);
+alpha7_2 = 2*transvectant(alpha5_1, c2, 1);
+alpha7_3 = transvectant(alpha5_2, c1, 1);
+alpha7_4 = 2*transvectant(alpha5_2, c2, 1);
 
 
 # HERE ARE COVARIANTS OF ORDER 2
 
 # The only covariants of degree 2 :
-beta2_1 = transvectant(f1,f1,2)/2; 
-beta2_2 = transvectant(f1,f2,2); 
-beta2_3 = transvectant(f2,f2,2)/2;
+beta2_1 = c1/2; 
+beta2_2 = c2; 
+beta2_3 = c3/2;
 
 # The new covariants of degree 4 :
-beta4_1 = transvectant(transvectant(f1,f1,2), transvectant(f1,f2,2), 1);
-beta4_2 = transvectant(transvectant(f1,f1,2), transvectant(f2,f2,2), 1)/2;
-beta4_3 = transvectant(transvectant(f2,f2,2), transvectant(f1,f2,2), 1);
+beta4_1 = transvectant(c1, c2, 1);
+beta4_2 = transvectant(c1, c3, 1)/2;
+beta4_3 = transvectant(c3, c2, 1);
 
 
 # HERE ARE COVARIANTS OF ORDER 3
@@ -60,10 +64,10 @@ gamma1_1 = f1;
 gamma1_2 = f2;
 
 # The new covariants of degree 3 :
-gamma3_1 = transvectant(transvectant(f1,f1,2), f1, 1);
-gamma3_2 = transvectant(transvectant(f1,f1,2), f2, 1);
-gamma3_3 = transvectant(transvectant(f2,f2,2), f1, 1);
-gamma3_4 = transvectant(transvectant(f2,f2,2), f2, 1);
+gamma3_1 = transvectant(c1, f1, 1);
+gamma3_2 = transvectant(c1, f2, 1);
+gamma3_3 = transvectant(c3, f1, 1);
+gamma3_4 = transvectant(c3, f2, 1);
 
 
 # HERE ARE COVARIANTS OF ORDER 4
