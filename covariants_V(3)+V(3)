@@ -10,12 +10,11 @@ s = s + (-1)^i*binomial(k,i)*Dery(i,Derx(k-i,f))*Dery(k-i,Derx(i,g));((p-k)!*(q-
 
 f1 = a_1*x^3 + 3*a_2*x^2*y + 3*a_3*x*y^2 + a_4*y^3;
 f2 = b_1*x^3 + 3*b_2*x^2*y + 3*b_3*x*y^2 + b_4*y^3; 
-
-# HERE ARE COVARIANTS OF ORDER 0 (they are all irreducible)
-
 c1 = transvectant(f1,f1,2);
 c2 = transvectant(f1,f2,2);
 c3 = transvectant(f2,f2,2);
+
+# HERE ARE COVARIANTS OF ORDER 0 (they are all irreducible)
 
 j2 = transvectant(f1,f2,3);
 j41 = transvectant(c1, c1, 2)/2;
