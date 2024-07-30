@@ -27,29 +27,32 @@ j6 = transvectant(transvectant(f1,transvectant(f1,f2,2),2),transvectant(f2,trans
 alpha3_1 = transvectant(transvectant(f1,f1,2), f2, 2)/2;
 alpha3_2 = transvectant(transvectant(f2,f2,2), f1, 2)/2;
 
-# The only covariants of degree 5 (they are linearly independant):
+# The new covariants of degree 5 :
 alpha5_1 = transvectant(alpha3_1, transvectant(f1, f1, 2), 1);
-alpha5_2 = 2*transvectant(alpha3_1, transvectant(f1, f2, 2), 1);
-alpha5_3 = transvectant(alpha3_1, transvectant(f2, f2, 2), 1);
-alpha5_4 = transvectant(alpha3_2, transvectant(f1, f1, 2), 1);
-alpha5_5 = 2*transvectant(alpha3_2, transvectant(f1, f2, 2), 1);
-alpha5_6 = transvectant(alpha3_2, transvectant(f2, f2, 2), 1);
+alpha5_2 = transvectant(alpha3_1, transvectant(f2, f2, 2), 1);
+alpha5_3 = transvectant(alpha3_2, transvectant(f1, f1, 2), 1);
+alpha5_4 = transvectant(alpha3_2, transvectant(f2, f2, 2), 1); 
 
+# The new covariants of degree 7 :
+alpha7_1 = transvectant(alpha5_1, transvectant(f2, f2, 2), 1);
+alpha7_2 = 2*transvectant(alpha5_1, transvectant(f1, f2, 2), 1);
+alpha7_3 = transvectant(alpha5_2, transvectant(f1, f1, 2), 1);
+alpha7_4 = 2*transvectant(alpha5_2, transvectant(f1, f2, 2), 1);
 
-
-# The new covariant of degree 7 :
-c6 = transvectant(c1, c2, 2);
-c7 = transvectant(c1, c6, 4);
-alpha11 = (-50*transvectant(c7, c5, 1) + 3*j4*alpha7)/40;
-# The new covariant of degree 13 :
-alpha13 = ((50*transvectant(c7, alpha7, 1)/3 - j4^2*alpha5)/40 - j8*alpha5)/2;
 
 # HERE ARE COVARIANTS OF ORDER 2
 
-# The only covariant of degree 2 :
-beta2 = c2;
-# The new covariant of degree 6 :
-beta6 = (-5*transvectant(beta2, c6, 2) + j4*beta2)/10;
+# The only covariants of degree 2 :
+beta2_1 = transvectant(f1,f1,2)/2; 
+beta2_2 = transvectant(f1,f2,2); 
+beta2_3 = transvectant(f2,f2,2)/2;
+
+# The new covariants of degree 4 :
+beta4_1 = transvectant(transvectant(f1,f1,2), transvectant(f1,f2,2), 1);
+beta4_2 = transvectant(transvectant(f1,f1,2), transvectant(f2,f2,2), 1)/2;
+beta4_3 = transvectant(transvectant(f2,f2,2), transvectant(f1,f2,2), 1);
+
+
 # The only covariant of degree 8 is :
 beta8 = 2*transvectant(beta6, beta2, 1);
 
