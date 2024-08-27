@@ -75,12 +75,6 @@ gamma3_4 = transvectant(c3, f2, 1);
 delta2 = transvectant(f1, f2, 1);
 
 
-# HERE ARE COVARIANTS OF ORDER 6
-
-# The new covariant of degree 2 :
-zeta2 = f1*f2;
-
-
 # Generators of the ideal
 
 F = map(QQ[s1,s2,s3,s4,s5,s6],R,{s1,s2,s3,s4,s5,s6,0,0});
