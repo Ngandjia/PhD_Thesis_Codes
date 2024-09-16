@@ -40,8 +40,8 @@ class BasisHandler:
         """
         import time
         if T == None :
-            H = [element for element in G]  # We copy of Gröbner basis
-            G = [element for element in G]  # We copy of Gröbner basis for modification
+            H = [element for element in G]  # We copy the Gröbner basis
+            G = [element for element in G]  # We copy the Gröbner basis for modification
             start = time.time()  # We start time tracking using SageMath's cputime()
             for element in H:
                 G_saved = [element for element in G]  # We backup the current Gröbner basis
