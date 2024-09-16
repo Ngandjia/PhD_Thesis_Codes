@@ -7,7 +7,7 @@ a_1, a_2, a_3, a_4, b_1, b_2, b_3, b_4, x, y, t = R1.gens()
 
 
 # In the following, we implement the Gröbner deformation as defined in 
-# section 15.8 of the book of Eisenbud (Commutative Algebra, a view towards Algebraic Geometry).
+# section 15.8 of the book of Eisenbud (Commutative Algebra with a view towards Algebraic Geometry).
 # We choose the degree reverse lexicographic order as the monomial order.
 
 
