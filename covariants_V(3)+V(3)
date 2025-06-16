@@ -71,7 +71,7 @@ gamma3_4 = transvectant(c3, f2, 1);
 
 # HERE ARE COVARIANTS OF ORDER 4
 
-# The only covariant of degree 4 :
+# The only covariant of degree 2 :
 delta2 = transvectant(f1, f2, 1);
 
 
