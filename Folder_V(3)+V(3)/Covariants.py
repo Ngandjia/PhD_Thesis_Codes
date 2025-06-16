@@ -63,5 +63,5 @@ gamma3_2 = transvectant(c1, f2, 1).form()
 gamma3_3 = transvectant(c3, f1, 1).form()
 gamma3_4 = transvectant(c3, f2, 1).form()
 
-# Covariants of order 4 (in degree 4)
+# Covariants of order 4 (in degree 2)
 delta2 = transvectant(f1, f2, 1).form()
