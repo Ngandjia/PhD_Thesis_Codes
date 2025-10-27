@@ -8,13 +8,13 @@ Dery = (k,f) -> (g = f;for i in 1..k do g = diff(y,g);g);
 transvectant = (f,g,k) -> (p = first degree f; q = first degree g;s = 0;for i in 0..k do 
 s = s + (-1)^i*binomial(k,i)*Dery(i,Derx(k-i,f))*Dery(k-i,Derx(i,g));((p-k)!*(q-k)!/(p!*q!))*s);
 
-f1 = a_1*x^2 + a_2*x*y + a_3*y^2; 
-f2 = b_1*x^2 + b_2*x*y + b_3*y^2;
+f1 = a_1*x^2 + 2*a_2*x*y + a_3*y^2; 
+f2 = b_1*x^2 + 2*b_2*x*y + b_3*y^2;
 
-j21 = transvectant(f1,f1,2);
-j22 = transvectant(f2,f2,2);
+j21 = transvectant(f1,f1,2) / (-2);
+j22 = transvectant(f2,f2,2) / (-2);
 j23 = transvectant(f1,f2,2);
-j4 = transvectant(transvectant(f1,f2,1), transvectant(f1,f2,1),2);
+j4 = -2 * transvectant(transvectant(f1,f2,1), transvectant(f1,f2,1),2);
 
 # Compile the following lines to find the nullcone and its dimension.
 
